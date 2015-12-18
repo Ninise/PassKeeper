@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/del_button"
+        android:text="@string/del_btn"
+        android:layout_weight="1"
+        android:textSize="50dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/button_state"
+        />
+
+    <Button
+        android:id="@+id/zero_button"
+        android:text="@string/zero_btn"
+        android:layout_weight="1"
+        android:textSize="50dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:background="@drawable/button_state"
+        />
+
+    <Button
+        android:id="@+id/clr_button"
+        android:text="@string/clr_btn"
+        android:layout_weight="1"
+        android:textSize="50dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="4dp"
+        android:background="@drawable/button_state"
+        />
+
+</TableRow>
