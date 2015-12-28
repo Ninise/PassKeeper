@@ -4,8 +4,6 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/seven_button"
-        android:text="@string/seven_btn"
         android:textSize="50dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="5dp"
@@ -14,8 +12,6 @@
         />
 
     <Button
-        android:id="@+id/eight_button"
-        android:text="@string/eight_btn"
         android:textSize="50dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
@@ -24,8 +20,6 @@
         />
 
     <Button
-        android:id="@+id/nine_button"
-        android:text="@string/nine_btn"
         android:textSize="50dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="4dp"

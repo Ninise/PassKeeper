@@ -1,17 +1,10 @@
 <resources>
     <string name="app_name">PassKeeper</string>
-    <string name="one_btn">1</string>
-    <string name="three_btn">3</string>
-    <string name="two_btn">2</string>
-    <string name="four_btn">4</string>
-    <string name="five_btn">5</string>
-    <string name="six_btn">6</string>
-    <string name="seven_btn">7</string>
-    <string name="eight_btn">8</string>
-    <string name="nine_btn">9</string>
     <string name="del_btn">Del</string>
-    <string name="zero_btn">0</string>
     <string name="clr_btn">Clr</string>
     <string name="menu_forgot_pass">Forgot password</string>
     <string name="menu_help">Help</string>
+    <string name="login_btn">Login</string>
+    <string name="pincode_TextView">Pincode</string>
+    <string name="secret_TextView">Secret</string>
 </resources>

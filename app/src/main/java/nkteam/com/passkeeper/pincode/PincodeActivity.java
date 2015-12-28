@@ -1,6 +1,8 @@
-package nkteam.com.passkeeper;
+package nkteam.com.passkeeper.pincode;
 
 import android.app.Fragment;
+
+import nkteam.com.passkeeper.SingleFragmentActivity;
 
 public class PincodeActivity extends SingleFragmentActivity {
 
