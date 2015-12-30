@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -21,8 +22,10 @@ import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import nkteam.com.passkeeper.R;
+import nkteam.com.passkeeper.passlist.PassListActivity;
 
 public class PincodeFragment extends Fragment {
 
@@ -119,7 +122,16 @@ public class PincodeFragment extends Fragment {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PincodeUserWorker.login(mUserData, INPUT_PINCODE);
+                if (PincodeUserWorker.login(mUserData, INPUT_PINCODE)) {
+                    Intent intent = new Intent(getActivity(), PassListActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getActivity().getApplicationContext(),
+                            "Login failed",
+                            Toast.LENGTH_SHORT)
+                            .show();
+                }
             }
         });
 
