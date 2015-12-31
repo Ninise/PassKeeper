@@ -5,13 +5,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandler {
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     private static final String DATABASE_NAME = "dataPassKeeper";
     private static final String TABLE_PASSES = "datapass";
@@ -31,7 +32,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_PASSES_TABLE = "CREATE TABLE " + TABLE_PASSES + "("
-                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + KEY_ID + " INTEGER PRIMARY KEY,"
                 + KEY_URL + " TEXT,"
                 + KEY_LOGIN + " TEXT,"
                 + KEY_PASS + " TEXT,"
@@ -84,7 +85,6 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
             cursor.moveToFirst();
         }
 
-        assert cursor != null;
         PKDataModel pkDataModel = new PKDataModel(Integer.parseInt(cursor.getString(0)),
                 cursor.getString(1),
                 cursor.getString(2),
@@ -98,7 +98,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
     @Override
     public List<PKDataModel> getAllDataPasses() {
         List<PKDataModel> dataPassesList = new ArrayList<>();
-        String selectQuery = "SELECT *  FROM " + TABLE_PASSES;
+        String selectQuery = "SELECT * FROM " + TABLE_PASSES;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -115,7 +115,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
                 dataPassesList.add(pkDataModel);
             } while (cursor.moveToNext());
         }
-
+        Log.d("Database", "IT WORK! GET ALL");
         return dataPassesList;
     }
 
@@ -152,6 +152,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_PASSES, null, null);
         db.close();
+        Log.d("Database", "IT WORK! DELETE ALL");
     }
 
 

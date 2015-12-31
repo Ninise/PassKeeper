@@ -140,7 +140,6 @@ public class PincodeFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.pincode_menu, menu);
     }
 
@@ -171,4 +170,9 @@ public class PincodeFragment extends Fragment {
         alert.show();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().finish();
+    }
 }
