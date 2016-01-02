@@ -85,6 +85,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
             cursor.moveToFirst();
         }
 
+        assert cursor != null;
         PKDataModel pkDataModel = new PKDataModel(Integer.parseInt(cursor.getString(0)),
                 cursor.getString(1),
                 cursor.getString(2),

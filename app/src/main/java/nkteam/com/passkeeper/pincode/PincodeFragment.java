@@ -52,7 +52,7 @@ public class PincodeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.pincode_layout, container, false);
+        View v = inflater.inflate(R.layout.fragment_pincode_layout, container, false);
 
         mPinCodeTextView = (TextView) v.findViewById(R.id.code_textView);
         mPinCodeTextView.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);

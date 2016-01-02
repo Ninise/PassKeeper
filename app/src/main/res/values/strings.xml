@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">PassKeeper</string>
+
+    <!-- Pincode Activity -->
     <string name="del_btn">Del</string>
     <string name="clr_btn">Clr</string>
     <string name="menu_forgot_pass">Forgot password</string>
@@ -7,4 +9,15 @@
     <string name="login_btn">Login</string>
     <string name="pincode_TextView">Pincode</string>
     <string name="secret_TextView">Secret</string>
+
+    <!--Pass List Activity -->
+    <string name="powered">NKTEAM</string>
+    <string name="new_acc">New account</string>
+    <string name="delete_acc">Delete accounts</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="logout">Logout</string>
+    <string name="openDrawer">Open Drawer</string>
+    <string name="closeDrawer">Close Drawer</string>
+
 </resources>
