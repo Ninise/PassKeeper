@@ -72,10 +72,17 @@ public class PassListActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+    private void viewPassDataFragment() {
+        PassDataFragment fragment = new PassDataFragment();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frame, fragment);
+        fragmentTransaction.commit();
+    }
+
     private boolean menuSelect(MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.new_acc:
-
+                viewPassDataFragment();
                 return true;
             case R.id.delete_acc:
 

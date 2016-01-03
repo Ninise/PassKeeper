@@ -19,5 +19,12 @@
     <string name="logout">Logout</string>
     <string name="openDrawer">Open Drawer</string>
     <string name="closeDrawer">Close Drawer</string>
+    <string name="urlText">Url</string>
+    <string name="emailText">Email</string>
+    <string name="loginText">Login</string>
+    <string name="passText">Password</string>
+    <string name="saveBtn">Save</string>
+    <string name="accInfoText">Account Information</string>
+    <string name="extraText">Extra</string>
 
 </resources>

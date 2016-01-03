@@ -23,10 +23,6 @@ public class ContentFragment extends ListFragment {
 
         DatabaseHandler db = new DatabaseHandler(getActivity());
 
-        Log.d(TAG, "INSERTING");
-        db.addDataPass(new PKDataModel("https://ex.ua", "provekra", "qwerty", "niki@ex.ua", "norm"));
-        db.addDataPass(new PKDataModel("https://xakep.ru", "proverka2", "ytrewq", "nk@in.ua", "guten"));
-
         Log.d(TAG, "READING");
         passList = db.getAllDataPasses();
 
@@ -43,7 +39,5 @@ public class ContentFragment extends ListFragment {
                     " EXTRA: " + model.getExtra();
             Log.d(TAG, log);
         }
-
-        db.deleteAllDataPasses();
     }
 }
