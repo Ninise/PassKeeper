@@ -26,5 +26,8 @@
     <string name="saveBtn">Save</string>
     <string name="accInfoText">Account Information</string>
     <string name="extraText">Extra</string>
+    <string name="alertPassData">Please fill in the fields Url, Email, Login and Password!</string>
+    <string name="alertInformation">Information</string>
+    <string name="alertCreateAcc">Create account</string>
 
 </resources>

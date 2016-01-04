@@ -1,8 +1,10 @@
 package nkteam.com.passkeeper.passlist;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +21,7 @@ public class PassDataFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_new_acc_layout, container, false);
 
         final EditText urlEditText = (EditText) v.findViewById(R.id.urlEditText);
@@ -32,14 +34,23 @@ public class PassDataFragment extends Fragment {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               DatabaseHandler db = new DatabaseHandler(getActivity());
-               db.addDataPass(new PKDataModel(
-                       urlEditText.getText().toString().trim(),
-                       loginEditText.getText().toString().trim(),
-                       passEditText.getText().toString().trim(),
-                       emailEditText.getText().toString().trim(),
-                       extraEditText.getText().toString().trim()));
-               backToList();
+
+
+                if (urlEditText.getText().toString().equals("") || loginEditText.getText().toString().equals("") ||
+                        passEditText.getText().toString().equals("") || emailEditText.getText().toString().equals("")) {
+
+                    showAlertDialog();
+
+                } else {
+                    DatabaseHandler db = new DatabaseHandler(getActivity());
+                    db.addDataPass(new PKDataModel(
+                            urlEditText.getText().toString().trim(),
+                            loginEditText.getText().toString().trim(),
+                            passEditText.getText().toString().trim(),
+                            emailEditText.getText().toString().trim(),
+                            extraEditText.getText().toString().trim()));
+                    backToList();
+                }
             }
         });
 
@@ -53,5 +64,30 @@ public class PassDataFragment extends Fragment {
                 beginTransaction();
         fragmentTransaction.replace(R.id.frame, fragment);
         fragmentTransaction.commit();
+    }
+
+    private void showAlertDialog() {
+        LayoutInflater factory = LayoutInflater.from(getActivity());
+        final View passDataAlertView = factory.inflate(R.layout.alert_dialog_passdata, null);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.MaterialDialogSheet)
+                .setView(passDataAlertView)
+                .setCancelable(false)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+        final AlertDialog alert = builder.create();
+        alert.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                Button positiveBtn = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+                positiveBtn.setTextSize(30);
+            }
+        });
+        alert.show();
     }
 }

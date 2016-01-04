@@ -65,6 +65,17 @@ public class PassListActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        int count = getFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            viewListFragment();
+        } else {
+            getFragmentManager().popBackStack();
+        }
+    }
+
     private void viewListFragment() {
         ContentFragment fragment = new ContentFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

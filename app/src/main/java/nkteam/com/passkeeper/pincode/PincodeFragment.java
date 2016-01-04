@@ -1,6 +1,6 @@
 package nkteam.com.passkeeper.pincode;
 
-import android.app.AlertDialog;
+import android.support.v7.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -62,7 +62,7 @@ public class PincodeFragment extends Fragment {
         boolean hasVisited = mUserData.getBoolean("hasVisited", false);
 
         if (!hasVisited) {
-            showDialog();
+            showAlertDialog();
             SharedPreferences.Editor e = mUserData.edit();
             e.putBoolean("hasVisited", true);
             e.apply();
@@ -143,7 +143,7 @@ public class PincodeFragment extends Fragment {
         inflater.inflate(R.menu.pincode_menu, menu);
     }
 
-    public void showDialog() {
+    public void showAlertDialog() {
         LayoutInflater factory = LayoutInflater.from(getActivity());
 
         final View textEntryView = factory.inflate(R.layout.alert_dialog_pin_layout, null);
@@ -151,12 +151,11 @@ public class PincodeFragment extends Fragment {
         final EditText inputPin = (EditText) textEntryView.findViewById(R.id.pincodeEditText);
         final EditText inputSecret = (EditText) textEntryView.findViewById(R.id.secretEditText);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.MaterialDialogSheet);
 
-        builder.setTitle("CREATE USER")
-                .setCancelable(true)
-                .setView(textEntryView)
-                .setPositiveButton("Create", new DialogInterface.OnClickListener() {
+        builder.setCancelable(false)
+               .setView(textEntryView)
+               .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         PINCODE = String.valueOf(inputPin.getText());
@@ -164,9 +163,16 @@ public class PincodeFragment extends Fragment {
                         PincodeUserWorker.createUser(mUserData, PINCODE, SECRET);
                         Log.d(TAG, PINCODE + " " + SECRET);
                     }
-                });
+               });
 
-        AlertDialog alert = builder.create();
+        final AlertDialog alert = builder.create();
+        alert.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                Button positiveBtn = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+                positiveBtn.setTextSize(30);
+            }
+        });
         alert.show();
     }
 

@@ -4,7 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="PrimaryColor">#555555</color>
-    <color name="PrimaryDarkColor">#FAA463</color>
+    <color name="PrimaryDarkColor">#555555</color>
+    <color name="PrimaryOrangeColor">#FAA463</color>
+    <color name="JustWhiteColor">#FFF</color>
 
 </resources>
