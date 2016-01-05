@@ -47,6 +47,7 @@ public class PincodeFragment extends Fragment {
         setHasOptionsMenu(true);
         getActivity().setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mUserData = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        getActivity().overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }
 
     @Nullable
@@ -155,7 +156,7 @@ public class PincodeFragment extends Fragment {
 
         builder.setCancelable(false)
                .setView(textEntryView)
-               .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+               .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         PINCODE = String.valueOf(inputPin.getText());

@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:background="@color/PrimaryDarkColor">
 
     <TextView
        android:layout_width="match_parent"
@@ -30,7 +31,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
                 android:text="@string/urlText"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 style="@style/RobotoTextViewStyle"/>
 
             <EditText
@@ -41,7 +42,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 style="@style/RobotoTextViewStyle"/>
 
             <TextView
@@ -52,7 +53,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 style="@style/RobotoTextViewStyle"/>
 
             <EditText
@@ -63,7 +64,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 style="@style/RobotoTextViewStyle"/>
 
             <TextView
@@ -74,7 +75,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
                 android:text="@string/loginText"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 style="@style/RobotoTextViewStyle"/>
 
             <EditText
@@ -94,7 +95,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
                 android:text="@string/passText"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 style="@style/RobotoTextViewStyle"/>
 
             <EditText
@@ -105,7 +106,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_gravity="fill"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 style="@style/RobotoTextViewStyle"/>
 
             <TextView
@@ -116,7 +117,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
                 android:text="@string/extraText"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 style="@style/RobotoTextViewStyle"/>
 
             <EditText
@@ -127,7 +128,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_gravity="fill"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 style="@style/RobotoTextViewStyle"/>
 
    </GridLayout>
@@ -140,7 +141,7 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
         android:text="@string/saveBtn"
-        android:textSize="20dp"
+        android:textSize="20sp"
         style="@style/RobotoTextViewStyle"/>
 
 </LinearLayout>

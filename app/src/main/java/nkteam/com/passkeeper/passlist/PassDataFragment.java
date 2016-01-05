@@ -62,6 +62,7 @@ public class PassDataFragment extends Fragment {
         android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().
                 getSupportFragmentManager().
                 beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.slide_out, R.anim.slide_in);
         fragmentTransaction.replace(R.id.frame, fragment);
         fragmentTransaction.commit();
     }
@@ -73,7 +74,7 @@ public class PassDataFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.MaterialDialogSheet)
                 .setView(passDataAlertView)
                 .setCancelable(false)
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();

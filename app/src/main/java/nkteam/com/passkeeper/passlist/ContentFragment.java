@@ -2,16 +2,18 @@ package nkteam.com.passkeeper.passlist;
 
 
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
-import android.util.Log;
-import android.widget.ArrayAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import java.util.List;
 
+import nkteam.com.passkeeper.R;
 import nkteam.com.passkeeper.database.DatabaseHandler;
 import nkteam.com.passkeeper.database.PKDataModel;
 
-public class ContentFragment extends ListFragment {
+public class ContentFragment extends Fragment {
 
     private static final String TAG = "ContentFragment";
 
@@ -23,21 +25,21 @@ public class ContentFragment extends ListFragment {
 
         DatabaseHandler db = new DatabaseHandler(getActivity());
 
-        Log.d(TAG, "READING");
         passList = db.getAllDataPasses();
 
-        ArrayAdapter<PKDataModel> adapter = new PassAdapter(getActivity(), passList);
+        final PassAdapter adapter = new PassAdapter(passList, getActivity());
 
-        setListAdapter(adapter);
+        RecyclerView rv = (RecyclerView) getActivity().findViewById(R.id.rv);
 
-        for (PKDataModel model : passList) {
-            String log = "ID: " + model.getId() +
-                    " URL: " + model.getUrl() +
-                    " LOGIN: " + model.getLogin() +
-                    " PASS: " + model.getPass() +
-                    " EMAIL: " + model.getEmail() +
-                    " EXTRA: " + model.getExtra();
-            Log.d(TAG, log);
-        }
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        rv.setLayoutManager(llm);
+        rv.setHasFixedSize(true);
+        rv.setAdapter(adapter);
+
+        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
+        itemAnimator.setAddDuration(1000);
+        itemAnimator.setRemoveDuration(1000);
+        rv.setItemAnimator(itemAnimator);
+        getActivity().overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }
 }

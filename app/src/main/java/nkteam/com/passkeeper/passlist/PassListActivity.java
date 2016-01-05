@@ -1,6 +1,7 @@
 package nkteam.com.passkeeper.passlist;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,9 +15,14 @@ import nkteam.com.passkeeper.R;
 
 public class PassListActivity extends AppCompatActivity {
 
+    private static final String TAG = "PassListActivity";
+
+    private boolean backPressedToExitOnce = false;
+
     private Toolbar toolbar;
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +75,24 @@ public class PassListActivity extends AppCompatActivity {
     public void onBackPressed() {
         int count = getFragmentManager().getBackStackEntryCount();
 
+        if (backPressedToExitOnce) {
+            closeApp();
+        }
+
         if (count == 0) {
             viewListFragment();
+            backPressedToExitOnce = true;
         } else {
             getFragmentManager().popBackStack();
         }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                backPressedToExitOnce = false;
+            }
+        }, 2000);
+
     }
 
     private void viewListFragment() {
@@ -86,6 +105,7 @@ public class PassListActivity extends AppCompatActivity {
     private void viewPassDataFragment() {
         PassDataFragment fragment = new PassDataFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out);
         fragmentTransaction.replace(R.id.frame, fragment);
         fragmentTransaction.commit();
     }
@@ -108,7 +128,7 @@ public class PassListActivity extends AppCompatActivity {
                 closeApp();
                 return true;
             default:
-                Toast.makeText(getApplicationContext(), "Somethings Wrong", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Somethings Wrong", Toast.LENGTH_SHORT).show();
                 return true;
         }
     }
