@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +63,8 @@ public class PassDataFragment extends Fragment {
         android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().
                 getSupportFragmentManager().
                 beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.slide_out, R.anim.slide_in);
+        fragmentTransaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out);
+        Log.d(TAG, "OUT");
         fragmentTransaction.replace(R.id.frame, fragment);
         fragmentTransaction.commit();
     }

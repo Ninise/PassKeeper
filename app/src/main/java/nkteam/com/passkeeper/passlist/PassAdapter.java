@@ -20,7 +20,7 @@ public class PassAdapter extends RecyclerView.Adapter<PassAdapter.ViewHolder> {
     List <PKDataModel> mDataSet;
     Context context;
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder  {
        TextView mUrlTextView;
        CardView cv;
 
@@ -59,7 +59,6 @@ public class PassAdapter extends RecyclerView.Adapter<PassAdapter.ViewHolder> {
         super.onAttachedToRecyclerView(recyclerView);
     }
 
-
     public void insert(int position, PKDataModel data) {
         mDataSet.add(position, data);
         notifyItemInserted(position);
@@ -71,9 +70,7 @@ public class PassAdapter extends RecyclerView.Adapter<PassAdapter.ViewHolder> {
         viewHolder.itemView.setAnimation(animAnticipateOvershoot);
     }
 
-
-    public void remove(PKDataModel data) {
-        int position = mDataSet.indexOf(data);
+    public void remove(int position) {
         mDataSet.remove(position);
         notifyItemRemoved(position);
     }

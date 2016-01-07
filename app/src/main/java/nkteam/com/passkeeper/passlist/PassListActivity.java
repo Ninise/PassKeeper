@@ -7,6 +7,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -27,7 +28,7 @@ public class PassListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_pass_list_layout);
+        setContentView(R.layout.activity_pass_list_layout);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -106,6 +107,7 @@ public class PassListActivity extends AppCompatActivity {
         PassDataFragment fragment = new PassDataFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out);
+        Log.d(TAG, "IN");
         fragmentTransaction.replace(R.id.frame, fragment);
         fragmentTransaction.commit();
     }
