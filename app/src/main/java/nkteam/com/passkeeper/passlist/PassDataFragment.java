@@ -20,39 +20,49 @@ public class PassDataFragment extends Fragment {
 
     private static final String TAG = "PassDataFragment";
 
+    private EditText urlEditText;
+    private EditText emailEditText;
+    private EditText loginEditText;
+    private EditText passEditText;
+    private EditText extraEditText;
+
+    private static int ID;
+
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
+
         View v = inflater.inflate(R.layout.fragment_new_acc_layout, container, false);
 
-        final EditText urlEditText = (EditText) v.findViewById(R.id.urlEditText);
-        final EditText emailEditText = (EditText) v.findViewById(R.id.emailEditText);
-        final EditText loginEditText = (EditText) v.findViewById(R.id.loginEditText);
-        final EditText passEditText = (EditText) v.findViewById(R.id.passEditText);
-        final EditText extraEditText = (EditText) v.findViewById(R.id.extraEditText);
+        urlEditText = (EditText) v.findViewById(R.id.urlEditText);
+        emailEditText = (EditText) v.findViewById(R.id.emailEditText);
+        loginEditText = (EditText) v.findViewById(R.id.loginEditText);
+        passEditText = (EditText) v.findViewById(R.id.passEditText);
+        extraEditText = (EditText) v.findViewById(R.id.extraEditText);
+
+        if (isDataExists()) {
+            getData();
+        }
 
         Button saveBtn = (Button) v.findViewById(R.id.saveButton);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 if (urlEditText.getText().toString().equals("") || loginEditText.getText().toString().equals("") ||
                         passEditText.getText().toString().equals("") || emailEditText.getText().toString().equals("")) {
 
                     showAlertDialog();
-
-                } else {
-                    DatabaseHandler db = new DatabaseHandler(getActivity());
-                    db.addDataPass(new PKDataModel(
-                            urlEditText.getText().toString().trim(),
-                            loginEditText.getText().toString().trim(),
-                            passEditText.getText().toString().trim(),
-                            emailEditText.getText().toString().trim(),
-                            extraEditText.getText().toString().trim()));
-                    backToList();
                 }
+                    DatabaseHandler db = new DatabaseHandler(getActivity());
+
+                if (!isDataExists()) {
+                    db.addDataPass(setData());
+                } else {
+                    db.updateDataPass(setData());
+                }
+                    backToList();
             }
+
         });
 
         return v;
@@ -64,7 +74,6 @@ public class PassDataFragment extends Fragment {
                 getSupportFragmentManager().
                 beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out);
-        Log.d(TAG, "OUT");
         fragmentTransaction.replace(R.id.frame, fragment);
         fragmentTransaction.commit();
     }
@@ -92,5 +101,29 @@ public class PassDataFragment extends Fragment {
             }
         });
         alert.show();
+    }
+
+    private void getData() {
+        ID = getArguments().getInt(ContentFragment.EXTRA_ID);
+        urlEditText.setText(getArguments().getString(ContentFragment.EXTRA_URL));
+        loginEditText.setText(getArguments().getString(ContentFragment.EXTRA_LOGIN));
+        passEditText.setText(getArguments().getString(ContentFragment.EXTRA_PASS));
+        emailEditText.setText(getArguments().getString(ContentFragment.EXTRA_EMAIL));
+        extraEditText.setText(getArguments().getString(ContentFragment.EXTRA_EXTRA));
+    }
+
+    private PKDataModel setData() {
+          return new PKDataModel(
+                                 ID,
+                                 urlEditText.getText().toString().trim(),
+                                 loginEditText.getText().toString().trim(),
+                                 passEditText.getText().toString().trim(),
+                                 emailEditText.getText().toString().trim(),
+                                 extraEditText.getText().toString().trim()
+          );
+    }
+
+    private boolean isDataExists() {
+        return getArguments() != null;
     }
 }

@@ -102,6 +102,7 @@ public class PincodeFragment extends Fragment {
             public void onClick(View v) {
                 if (mPinCodeTextView.length() != 0) {
                     mPinCodeTextView.setText(mPinCodeTextView.getText().subSequence(0, mPinCodeTextView.length() - 1));
+                    INPUT_PINCODE = mPinCodeTextView.getText().toString();
                 }
             }
         });

@@ -8,12 +8,6 @@
             android:title="@string/new_acc" />
 
         <item
-            android:id="@+id/delete_acc"
-            android:checked="false"
-            android:icon="@drawable/account_minus"
-            android:title="@string/delete_acc" />
-
-        <item
             android:id="@+id/settings"
             android:checked="false"
             android:icon="@drawable/settings"

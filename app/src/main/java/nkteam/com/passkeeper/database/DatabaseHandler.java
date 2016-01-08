@@ -116,7 +116,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
                 dataPassesList.add(pkDataModel);
             } while (cursor.moveToNext());
         }
-        Log.d("Database", "IT WORK! GET ALL");
+
         return dataPassesList;
     }
 
@@ -130,13 +130,13 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         values.put(KEY_PASS, pkDataModel.getPass());
         values.put(KEY_EMAIL, pkDataModel.getEmail());
         values.put(KEY_EXTRA, pkDataModel.getExtra());
-
         return db.update(
                 TABLE_PASSES,
                 values,
                 KEY_ID + "=?",
                 new String[] { String.valueOf(pkDataModel.getId()) }
         );
+
     }
 
     @Override
@@ -153,7 +153,6 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_PASSES, null, null);
         db.close();
-        Log.d("Database", "IT WORK! DELETE ALL");
     }
 
 
