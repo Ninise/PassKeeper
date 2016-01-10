@@ -30,4 +30,12 @@
     <string name="alertInformation">Information</string>
     <string name="alertCreateAcc">Create account</string>
 
+    <!-- SettingsActivity -->
+    <string name="change_pin">Change PIN</string>
+    <string name="change_theme">Change theme</string>
+    <string-array name="themes">
+        <item name="light_theme">Light</item>
+        <item name="dark_theme">Dark</item>
+    </string-array>
+
 </resources>

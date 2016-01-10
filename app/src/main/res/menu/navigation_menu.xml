@@ -16,7 +16,7 @@
         <item
             android:id="@+id/about"
             android:checked="false"
-            android:icon="@drawable/human"
+            android:icon="@drawable/information_outline"
             android:title="@string/about" />
 
         <item

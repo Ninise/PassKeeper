@@ -128,6 +128,7 @@ public class PincodeFragment extends Fragment {
                     Intent intent = new Intent(getActivity(), PassListActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
                 } else {
                     Toast.makeText(getActivity().getApplicationContext(),
                             "Login failed",

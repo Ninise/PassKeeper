@@ -1,5 +1,6 @@
 package nkteam.com.passkeeper.passlist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import nkteam.com.passkeeper.R;
+import nkteam.com.passkeeper.settings.SettingsActivity;
 
 public class PassListActivity extends AppCompatActivity {
 
@@ -106,9 +108,14 @@ public class PassListActivity extends AppCompatActivity {
         PassDataFragment fragment = new PassDataFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out);
-
         fragmentTransaction.replace(R.id.frame, fragment);
         fragmentTransaction.commit();
+    }
+
+    private void switchToSettings() {
+        Intent intent = new Intent(PassListActivity.this, SettingsActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }
 
     private boolean menuSelect(MenuItem menuItem) {
@@ -117,7 +124,7 @@ public class PassListActivity extends AppCompatActivity {
                 viewPassDataFragment();
                 return true;
             case R.id.settings:
-
+                switchToSettings();
                 return true;
             case R.id.about:
 
