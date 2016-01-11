@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">PassKeeper</string>
+
+    <!-- Pincode Activity -->
+    <string name="del_btn">Del</string>
+    <string name="clr_btn">Clr</string>
+    <string name="menu_forgot_pass">Forgot password</string>
+    <string name="menu_help">Help</string>
+    <string name="login_btn">Login</string>
+    <string name="pincode_TextView">Pincode</string>
+    <string name="secret_TextView">Secret</string>
+
+    <!--Pass List Activity -->
+    <string name="powered">hazelhunt</string>
+    <string name="add_new">Add new</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="exit">Exit</string>
+    <string name="openDrawer">Open Drawer</string>
+    <string name="closeDrawer">Close Drawer</string>
+    <string name="urlText">Url</string>
+    <string name="emailText">Email</string>
+    <string name="loginText">Login</string>
+    <string name="passText">Password</string>
+    <string name="saveBtn">Save</string>
+    <string name="accInfoText">Account Information</string>
+    <string name="extraText">Extra</string>
+    <string name="alertPassData">Please fill in the fields Url, Email, Login and Password!</string>
+    <string name="alertInformation">Information</string>
+    <string name="alertCreateAcc">Create account</string>
+
+    <!-- SettingsActivity -->
+    <string name="change_pin">Change PIN</string>
+    <string name="change_theme">Change theme</string>
+    <string name="alertSettings">Please entry your secret</string>
+    <string name="cancel">Cancel</string>
+    <string name="alertFailSecret">Fail secret, please try again</string>
+    <string-array name="themes">
+        <item name="light_theme">Light</item>
+        <item name="dark_theme">Dark</item>
+    </string-array>
+
+</resources>

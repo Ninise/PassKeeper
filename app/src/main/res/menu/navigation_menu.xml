@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item
+            android:id="@+id/new_acc"
+            android:checked="false"
+            android:icon="@drawable/plus"
+            android:title="@string/add_new" />
+
+        <item
+            android:id="@+id/settings"
+            android:checked="false"
+            android:icon="@drawable/settings"
+            android:title="@string/settings" />
+
+        <item
+            android:id="@+id/about"
+            android:checked="false"
+            android:icon="@drawable/information_outline"
+            android:title="@string/about" />
+
+        <item
+            android:id="@+id/logout"
+            android:checked="false"
+            android:icon="@drawable/logout"
+            android:title="@string/exit" />
+
+</menu>
