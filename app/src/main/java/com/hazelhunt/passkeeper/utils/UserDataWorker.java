@@ -27,30 +27,16 @@ public class UserDataWorker implements IUserDataWorker {
                 : "APP PREFERENCES NOT FOUND";
     }
 
-    public boolean changePin(SharedPreferences userData, String newPin, String secret) {
-        if (isTrueSecret(userData, secret)) {
-
+    public void changePin(SharedPreferences userData, String newPin) {
             SharedPreferences.Editor editor = userData.edit();
             editor.putString(APP_PREFERENCES_PINCODE, newPin);
             editor.apply();
-
-            return true;
-        } else {
-            return false;
-        }
     }
 
-    public boolean changeSecret(SharedPreferences userData, String oldSecret, String newSecret) {
-        if (isTrueSecret(userData, oldSecret)) {
-
+    public void changeSecret(SharedPreferences userData, String newSecret) {
             SharedPreferences.Editor editor = userData.edit();
             editor.putString(APP_PREFERENCES_SECRET, newSecret);
             editor.apply();
-
-            return true;
-        } else {
-            return false;
-        }
     }
 
     public boolean isTrueSecret(SharedPreferences userData, String secret) {

@@ -4,7 +4,7 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
     defaultConfig {
-        applicationId 'com.github.hazelhunt.passkeeper'
+        applicationId 'com.hazelhunt.passkeeper'
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1

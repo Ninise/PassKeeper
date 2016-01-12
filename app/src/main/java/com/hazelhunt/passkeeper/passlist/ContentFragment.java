@@ -13,11 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.List;
-
 import com.hazelhunt.passkeeper.R;
 import com.hazelhunt.passkeeper.database.DatabaseHandler;
 import com.hazelhunt.passkeeper.database.PKDataModel;
+
+import java.util.List;
 
 public class ContentFragment extends Fragment {
 

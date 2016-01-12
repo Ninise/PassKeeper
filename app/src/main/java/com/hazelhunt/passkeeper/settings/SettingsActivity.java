@@ -49,7 +49,6 @@ public class SettingsActivity extends AppCompatActivity {
         mUserData = getSharedPreferences(mUserDataWorker.APP_PREFERENCES, Context.MODE_PRIVATE);
 
         showAlertDialog();
-
     }
 
     private void viewSettingsFragment() {

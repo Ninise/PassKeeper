@@ -57,8 +57,6 @@ public class PassListActivity extends AppCompatActivity {
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
 
         actionBarDrawerToggle.syncState();
-
-        viewListFragment();
     }
 
     @Override
@@ -142,4 +140,11 @@ public class PassListActivity extends AppCompatActivity {
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(1);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        viewListFragment();
+    }
+
 }

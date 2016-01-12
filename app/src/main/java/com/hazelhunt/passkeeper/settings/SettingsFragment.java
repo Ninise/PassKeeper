@@ -12,17 +12,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckedTextView;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.hazelhunt.passkeeper.R;
+import com.hazelhunt.passkeeper.database.DatabaseHandler;
 import com.hazelhunt.passkeeper.utils.UserDataWorker;
 
 public class SettingsFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     private static final String TAG = "SettingsFragment";
 
+    public static String TAG_THEME = "";
+
     private AppCompatSpinner mSpinner;
     private EditText mPinEditText;
+    private EditText mSecretEditText;
+    private CheckedTextView mDeleteADCheckedTextView;
+    private Button mSaveButton;
 
     private UserDataWorker mUserDataWorker;
     private SharedPreferences mUserData;
@@ -54,10 +63,44 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
         mSpinner.setOnItemSelectedListener(this);
 
         mPinEditText = (EditText) v.findViewById(R.id.changePinEditText);
-        mPinEditText.setOnClickListener(new View.OnClickListener() {
+        mSecretEditText = (EditText) v.findViewById(R.id.changeSecretEditText);
+
+        mDeleteADCheckedTextView = (CheckedTextView) v.findViewById(R.id.deleteAllDataCheckedTextView);
+        mDeleteADCheckedTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((CheckedTextView) v).toggle();
+            }
+        });
+
+        mSaveButton = (Button) v.findViewById(R.id.settingsButton);
+        mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                if (isNotEmpty(mPinEditText.getText().toString())) {
+                    mUserDataWorker.changePin(mUserData, mPinEditText.getText().toString().trim());
+                    Log.d(TAG, "PIN CHANGED");
+                }
+
+                if (isNotEmpty(mSecretEditText.getText().toString())) {
+                    mUserDataWorker.changeSecret(mUserData, mSecretEditText.getText().toString().trim());
+                    Log.d(TAG, "SECRET CHANGED");
+                }
+
+                if (mDeleteADCheckedTextView.isChecked()) {
+                    DatabaseHandler db = new DatabaseHandler(getActivity());
+                    db.deleteAllDataPasses();
+                    Log.d(TAG, "ALL DATA DELETED");
+                }
+                Toast.makeText(getActivity(), R.string.toast_settings, Toast.LENGTH_SHORT).show();
+
+                getActivity().onBackPressed();
+
+                Log.d(TAG, "PIN: " + mPinEditText.getText().toString() +
+                " SECRET: " + mSecretEditText.getText().toString() +
+                " THEME: " + TAG_THEME +
+                " DELETE ALL DATA: " + mDeleteADCheckedTextView.isChecked());
             }
         });
 
@@ -69,10 +112,10 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
         String item = String.valueOf(parent.getItemAtPosition(position));
         switch (item) {
             case "Light":
-                Log.d(TAG, String.valueOf(parent.getItemAtPosition(position)));
+                TAG_THEME = String.valueOf(parent.getItemAtPosition(position));
                 break;
             case "Dark":
-                Log.d(TAG, String.valueOf(parent.getItemAtPosition(position)));
+                TAG_THEME = String.valueOf(parent.getItemAtPosition(position));
                 break;
         }
     }
@@ -80,6 +123,10 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    private boolean isNotEmpty(String value) {
+        return !value.isEmpty();
     }
 
 }

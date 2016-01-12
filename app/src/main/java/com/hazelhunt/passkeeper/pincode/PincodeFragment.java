@@ -1,6 +1,5 @@
 package com.hazelhunt.passkeeper.pincode;
 
-import android.support.v7.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,8 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.InputType;
-import android.text.method.PasswordTransformationMethod;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -63,8 +61,6 @@ public class PincodeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_pincode_layout, container, false);
 
         mPinCodeTextView = (TextView) v.findViewById(R.id.code_textView);
-        mPinCodeTextView.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        mPinCodeTextView.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         // if the user first in the program
         boolean hasVisited = mUserData.getBoolean("hasVisited", false);
@@ -141,6 +137,7 @@ public class PincodeFragment extends Fragment {
                             "Login failed",
                             Toast.LENGTH_SHORT)
                             .show();
+                    mPinCodeTextView.setText("");
                 }
             }
         });

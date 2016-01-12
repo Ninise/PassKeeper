@@ -35,6 +35,9 @@
     <string name="alertSettings">Please entry your secret</string>
     <string name="cancel">Cancel</string>
     <string name="alertFailSecret">Fail secret, please try again</string>
+    <string name="change_secret">Change secret</string>
+    <string name="deleteAllData">Delete all data from app</string>
+    <string name="toast_settings">All changes saved</string>
     <string-array name="themes">
         <item name="light_theme">Light</item>
         <item name="dark_theme">Dark</item>
