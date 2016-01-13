@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.hazelhunt.passkeeper.R;
+import com.hazelhunt.passkeeper.about.AboutActivity;
 import com.hazelhunt.passkeeper.settings.SettingsActivity;
 
 public class PassListActivity extends AppCompatActivity {
@@ -98,7 +99,7 @@ public class PassListActivity extends AppCompatActivity {
     private void viewListFragment() {
         ContentFragment fragment = new ContentFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.frame, fragment);
+        fragmentTransaction.replace(R.id.frameSettings, fragment);
         fragmentTransaction.commit();
     }
 
@@ -106,12 +107,18 @@ public class PassListActivity extends AppCompatActivity {
         PassDataFragment fragment = new PassDataFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out);
-        fragmentTransaction.replace(R.id.frame, fragment);
+        fragmentTransaction.replace(R.id.frameSettings, fragment);
         fragmentTransaction.commit();
     }
 
     private void switchToSettings() {
         Intent intent = new Intent(PassListActivity.this, SettingsActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+    }
+
+    private void switchToAbout() {
+        Intent intent = new Intent(PassListActivity.this, AboutActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }
@@ -125,7 +132,7 @@ public class PassListActivity extends AppCompatActivity {
                 switchToSettings();
                 return true;
             case R.id.about:
-
+                switchToAbout();
                 return true;
             case R.id.logout:
                 closeApp();

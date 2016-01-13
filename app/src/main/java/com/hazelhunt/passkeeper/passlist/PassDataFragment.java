@@ -73,7 +73,7 @@ public class PassDataFragment extends Fragment {
                 getSupportFragmentManager().
                 beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out);
-        fragmentTransaction.replace(R.id.frame, fragment);
+        fragmentTransaction.replace(R.id.frameSettings, fragment);
         fragmentTransaction.commit();
     }
 

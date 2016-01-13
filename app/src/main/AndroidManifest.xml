@@ -19,6 +19,8 @@
 
         <activity android:name="com.hazelhunt.passkeeper.settings.SettingsActivity"/>
 
+        <activity android:name="com.hazelhunt.passkeeper.about.AboutActivity"/>
+
     </application>
 
 </manifest>
