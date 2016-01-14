@@ -47,5 +47,6 @@
     <!-- AboutActivity -->
     <string name="born_year">2016</string>
     <string name="ok_btn">Ok</string>
+    <string name="off_site">Official site: pk-hazelhunt.rhcloud.com</string>
 
 </resources>
