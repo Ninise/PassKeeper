@@ -4,10 +4,10 @@ import android.content.SharedPreferences;
 
 public interface IUserDataWorker {
 
-    boolean login(SharedPreferences userData, String inputPincode);
+    boolean login(SharedPreferences userData, String inputPincode) throws Exception;
     void createUser(SharedPreferences userData, String pincode, String secret);
     String loadUserData(SharedPreferences userData, String dataTag);
     void changePin(SharedPreferences userData, String newPin);
     void changeSecret(SharedPreferences userData, String newSecret);
-    boolean isTrueSecret(SharedPreferences userData, String secret);
+    boolean isTrueSecret(SharedPreferences userData, String secret) throws Exception;
 }

@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -67,7 +66,7 @@ public class PincodeFragment extends Fragment {
         boolean hasVisited = mUserData.getBoolean("hasVisited", false);
 
         if (!hasVisited) {
-            showAlertDialog();
+            showNewUserAlertDialog();
             SharedPreferences.Editor e = mUserData.edit();
             e.putBoolean("hasVisited", true);
             e.apply();
@@ -81,8 +80,6 @@ public class PincodeFragment extends Fragment {
                 String text = textView.getText().toString();
                 mPinCodeTextView.setText(working + text);
                 INPUT_PINCODE = mPinCodeTextView.getText().toString();
-
-                Log.d(TAG, mPinCodeTextView.getText().toString());
             }
         };
 
@@ -129,17 +126,14 @@ public class PincodeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (mUserDataWorker.login(mUserData, INPUT_PINCODE)) {
-                    Intent intent = new Intent(getActivity(), PassListActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                    getActivity().overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                    viewPassList();
                 } else {
                     Toast.makeText(getActivity().getApplicationContext(),
-                            "Login failed",
+                            R.string.login_failed,
                             Toast.LENGTH_SHORT)
                             .show();
                     mPinCodeTextView.setText("");
-                }
+                    }
             }
         });
 
@@ -155,19 +149,17 @@ public class PincodeFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_forgot_pass:
-                Log.d(TAG, "FORGOT PASS");
-                // TODO add alert dialog with verify secret, and show pin
+                showForgotPassAlertDialog();
                 break;
             case R.id.menu_item_help:
-                Log.d(TAG, "HELP");
-                // TODO add alert dialog with information about how using app
+                showHelpAlertDialog();
                 break;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void showAlertDialog() {
+    private void showNewUserAlertDialog() {
         LayoutInflater factory = LayoutInflater.from(getActivity());
 
         final View textEntryView = factory.inflate(R.layout.alert_dialog_pin_layout, null);
@@ -179,14 +171,13 @@ public class PincodeFragment extends Fragment {
 
         builder.setCancelable(false)
                .setView(textEntryView)
-               .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        PINCODE = String.valueOf(inputPin.getText());
-                        SECRET = String.valueOf(inputSecret.getText());
-                        mUserDataWorker.createUser(mUserData, PINCODE, SECRET);
-                        Log.d(TAG, PINCODE + " " + SECRET);
-                    }
+               .setPositiveButton(R.string.ok_btn, new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       PINCODE = String.valueOf(inputPin.getText());
+                       SECRET = String.valueOf(inputSecret.getText());
+                       mUserDataWorker.createUser(mUserData, PINCODE, SECRET);
+                   }
                });
 
         final AlertDialog alert = builder.create();
@@ -198,6 +189,72 @@ public class PincodeFragment extends Fragment {
             }
         });
         alert.show();
+    }
+
+    private void showForgotPassAlertDialog() {
+        LayoutInflater facoty = LayoutInflater.from(getActivity());
+
+        final View textEntryView = facoty.inflate(R.layout.alert_dialog_forgotpass_layout, null);
+
+        final EditText inputSecret = (EditText) textEntryView.findViewById(R.id.forgotPassEditText);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.MaterialDialogSheet);
+
+        builder.setCancelable(false)
+                .setView(textEntryView)
+                .setPositiveButton(R.string.ok_btn, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        try {
+                            if (mUserDataWorker.isTrueSecret(mUserData, inputSecret.getText().toString())) {
+                                viewPassList();
+                                Toast.makeText(getActivity(), R.string.change_your_pin, Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getActivity(), R.string.your_secret_incorrect, Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+        final AlertDialog alert = builder.create();
+        alert.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                Button positiveBtn = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+                positiveBtn.setTextSize(30);
+            }
+        });
+
+        alert.show();
+    }
+
+    private void showHelpAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.MaterialDialogSheet);
+
+        builder.setCancelable(false)
+                .setTitle(R.string.menu_help)
+                .setMessage(R.string.cant_help)
+                .setPositiveButton(R.string.ok_btn, null);
+
+        final AlertDialog alert = builder.create();
+        alert.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                Button positiveBtn = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+                positiveBtn.setTextSize(30);
+            }
+        });
+
+        alert.show();
+    }
+
+    private void viewPassList() {
+        Intent intent = new Intent(getActivity(), PassListActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }
 
     @Override

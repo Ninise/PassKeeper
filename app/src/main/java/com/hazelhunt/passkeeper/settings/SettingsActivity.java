@@ -107,5 +107,4 @@ public class SettingsActivity extends AppCompatActivity {
     private boolean checkSecret(String SECRET) {
          return mUserDataWorker.isTrueSecret(mUserData, SECRET);
     }
-
 }

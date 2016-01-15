@@ -9,6 +9,12 @@
     <string name="login_btn">Login</string>
     <string name="pincode_TextView">Pincode</string>
     <string name="secret_TextView">Secret</string>
+    <string name="forgot_pass_text">Type your secret please</string>
+    <string name="change_your_pin">You need change your pin</string>
+    <string name="your_secret_incorrect">Your secret password is incorrect</string>
+    <string name="cant_help">I afraid, i can\'t help if you forgot your pincode and secret :(
+        You can reinstall app, and remember two important password for all other.</string>
+    <string name="login_failed">Login failed</string>
 
     <!--Pass List Activity -->
     <string name="powered">HazelHunt</string>
@@ -38,7 +44,6 @@
     <string name="change_secret">Change secret</string>
     <string name="deleteAllData">Delete all data from app</string>
     <string name="toast_settings">All changes saved</string>
-    <string name="app_version">Version 1.0</string>
     <string-array name="themes">
         <item name="light_theme">Light</item>
         <item name="dark_theme">Dark</item>
@@ -48,5 +53,6 @@
     <string name="born_year">2016</string>
     <string name="ok_btn">Ok</string>
     <string name="off_site">Official site: pk-hazelhunt.rhcloud.com</string>
+    <string name="app_version">Version 1.0</string>
 
 </resources>
