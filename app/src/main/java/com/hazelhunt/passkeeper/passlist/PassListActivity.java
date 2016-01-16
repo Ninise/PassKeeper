@@ -1,24 +1,52 @@
 package com.hazelhunt.passkeeper.passlist;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.hazelhunt.passkeeper.R;
 import com.hazelhunt.passkeeper.about.AboutActivity;
+import com.hazelhunt.passkeeper.database.DatabaseHandler;
+import com.hazelhunt.passkeeper.database.PKDataModel;
 import com.hazelhunt.passkeeper.settings.SettingsActivity;
+import com.hazelhunt.passkeeper.utils.HttpRequest;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class PassListActivity extends AppCompatActivity {
 
     private static final String TAG = "PassListActivity";
+
+    private static final String JSON_ID = "id";
+    private static final String JSON_URL = "url";
+    private static final String JSON_LOGIN = "login";
+    private static final String JSON_PASS = "password";
+    private static final String JSON_EMAIL = "email";
+    private static final String JSON_EXTRA = "extra";
 
     private boolean backPressedToExitOnce = false;
 
@@ -26,6 +54,8 @@ public class PassListActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
 
+    public String EMAIL;
+    public String PASSWORD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,6 +153,60 @@ public class PassListActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }
 
+    private void synchroWithCloud() {
+        showAlertLoginToCloud();
+    }
+
+    private void showAlertLoginToCloud() {
+        LayoutInflater factory = LayoutInflater.from(this);
+        final View passDataAlertView = factory.inflate(R.layout.alert_dialog_logintocloud_layout, null);
+
+        final EditText emailEdit = (EditText) passDataAlertView.findViewById(R.id.cloudEmailEditText);
+        final EditText passEdit = (EditText) passDataAlertView.findViewById(R.id.cloudPasswordEditText);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MaterialDialogSheet)
+                .setView(passDataAlertView)
+                .setCancelable(false)
+                .setPositiveButton(R.string.ok_btn, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        try {
+                            EMAIL = emailEdit.getText().toString();
+                            PASSWORD = stringToMD5(passEdit.getText().toString());
+
+                            new PKItemsTask().execute();
+
+                        } catch (NoSuchAlgorithmException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+        final AlertDialog alert = builder.create();
+        alert.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                Button positiveBtn = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+                positiveBtn.setTextSize(30);
+            }
+        });
+        alert.show();
+    }
+
+    public static boolean hasConnection(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
+    private String stringToMD5(String str) throws NoSuchAlgorithmException {
+        MessageDigest m = MessageDigest.getInstance("MD5");
+        m.update(str.getBytes(), 0, str.length());
+
+        return new BigInteger(1, m.digest()).toString(16);
+    }
+
     private boolean menuSelect(MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.new_acc:
@@ -130,6 +214,13 @@ public class PassListActivity extends AppCompatActivity {
                 return true;
             case R.id.settings:
                 switchToSettings();
+                return true;
+            case R.id.synchronize:
+                if (hasConnection(getApplicationContext())) {
+                    synchroWithCloud();
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.enable_internet, Toast.LENGTH_SHORT).show();
+                }
                 return true;
             case R.id.about:
                 switchToAbout();
@@ -152,6 +243,58 @@ public class PassListActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         viewListFragment();
+    }
+
+    private class PKItemsTask extends AsyncTask<Void,Void, Void> {
+
+        public String URL = "http://pk-hazelhunt.rhcloud.com/sync?user=" +
+                EMAIL + "&pass=" + PASSWORD;
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            HttpRequest request = new HttpRequest();
+            DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+            try {
+                String resultJson = request.getUrl(URL);
+
+                if (request.isOKResponseCode()) {
+
+                    JSONArray array = new JSONArray(resultJson);
+
+                    for (int i = 0; i < array.length(); i++) {
+                        JSONObject obj = array.getJSONObject(i);
+
+                        String id = obj.getString(JSON_ID);
+                        String url = obj.getString(JSON_URL);
+                        String email = obj.getString(JSON_EMAIL);
+                        String login = obj.getString(JSON_LOGIN);
+                        String pass = obj.getString(JSON_PASS);
+                        String extra = obj.getString(JSON_EXTRA);
+
+                        db.addDataPass(new PKDataModel(Integer.parseInt(id), url, login, pass, email, extra));
+                    }
+                }
+            } catch (Exception ioe) {
+                Log.e(TAG, "PK-hazelhunt to fetch URL: ", ioe);
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            HttpRequest request = new HttpRequest();
+
+            if (request.isOKResponseCode()) {
+                Toast.makeText(getApplicationContext(), R.string.synchronized_text, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), R.string.user_not_found, Toast.LENGTH_SHORT).show();
+            }
+
+            viewListFragment();
+        }
     }
 
 }

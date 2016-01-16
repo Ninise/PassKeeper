@@ -83,7 +83,7 @@ public class PassDataFragment extends Fragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.MaterialDialogSheet)
                 .setView(passDataAlertView)
-                .setCancelable(false)
+                .setCancelable(true)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

@@ -54,5 +54,10 @@
     <string name="ok_btn">Ok</string>
     <string name="off_site">Official site: pk-hazelhunt.rhcloud.com</string>
     <string name="app_version">Version 1.0</string>
+    <string name="synchro">Synchronize</string>
+    <string name="synchronized_text">Synchronized</string>
+    <string name="synchro_with_cloud">Synchronize with\npk-hazelhunt.rhcloud.com</string>
+    <string name="user_not_found">User not found!</string>
+    <string name="enable_internet">Connection missing please enable</string>
 
 </resources>
