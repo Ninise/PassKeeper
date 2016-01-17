@@ -71,4 +71,15 @@ public class PKDataModel {
         this._extra = _extra;
     }
 
+    @Override
+    public String toString() {
+        return "PKDataModel{" +
+                "ID = " + _id +
+                "  URL = '" + _url + '\'' +
+                "  LOGIN = '" + _login + '\'' +
+                "  PASS = '" + _pass + '\'' +
+                "  EMAIL = '" + _email + '\'' +
+                "  EXTRA = '" + _extra + '\'' +
+                '}';
+    }
 }
