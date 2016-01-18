@@ -29,10 +29,9 @@ import com.hazelhunt.passkeeper.database.DatabaseHandler;
 import com.hazelhunt.passkeeper.database.PKDataModel;
 import com.hazelhunt.passkeeper.settings.SettingsActivity;
 import com.hazelhunt.passkeeper.utils.HttpRequest;
+import com.hazelhunt.passkeeper.utils.JSONParser;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -42,13 +41,6 @@ import java.util.List;
 public class PassListActivity extends AppCompatActivity {
 
     private static final String TAG = "PassListActivity";
-
-    private static final String JSON_ID = "id";
-    private static final String JSON_URL = "url";
-    private static final String JSON_LOGIN = "login";
-    private static final String JSON_PASS = "password";
-    private static final String JSON_EMAIL = "email";
-    private static final String JSON_EXTRA = "extra";
 
     private boolean backPressedToExitOnce = false;
 
@@ -61,19 +53,10 @@ public class PassListActivity extends AppCompatActivity {
 
     private DatabaseHandler db;
 
-    private JSONObject objTest;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pass_list_layout);
-
-        /** Test post */
-        try {
-            objTest = new JSONObject("{\"id\": 1,\"login\":\"hg\",\"email\":\"gh\",\"password\":\"gh\",\"extra\":\"gh\",\"url\":\"gh\",\"userId\":1 }");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
         db = new DatabaseHandler(getApplicationContext());
 
@@ -181,7 +164,7 @@ public class PassListActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MaterialDialogSheet)
                 .setView(passDataAlertView)
-                .setCancelable(false)
+                .setCancelable(true)
                 .setPositiveButton(R.string.ok_btn, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -265,6 +248,8 @@ public class PassListActivity extends AppCompatActivity {
         public String URL = "http://pk-hazelhunt.rhcloud.com/sync?user=" +
                 EMAIL + "&pass=" + PASSWORD;
 
+//        JSONArray postArray = new JSONArray();
+
         @Override
         protected Void doInBackground(Void... params) {
 
@@ -281,36 +266,36 @@ public class PassListActivity extends AppCompatActivity {
                 if (request.isOKResponseCode()) {
 
                     JSONArray array = new JSONArray(resultJson);
+                    Log.d(TAG, array.get(0).toString());
 
                     for (int i = 0; i < array.length(); i++) {
 
-                        JSONObject obj = array.getJSONObject(i);
+                        PKDataModel pkDataModel = JSONParser.parseToPKDataModel(array, i);
 
-                        String id = obj.getString(JSON_ID);
-                        String url = obj.getString(JSON_URL);
-                        String email = obj.getString(JSON_EMAIL);
-                        String login = obj.getString(JSON_LOGIN);
-                        String pass = obj.getString(JSON_PASS);
-                        String extra = obj.getString(JSON_EXTRA);
+                        if (mobileList.isEmpty()) {
 
-                        PKDataModel pkDataModel = new PKDataModel(Integer.parseInt(id), url, login, pass, email, extra);
+                            db.addDataPass(pkDataModel);
 
-                        for (int j = 0; j < mobileList.size(); j++) {
+                        } else {
 
-                            if (!mobileList.get(j).getPass().equals(pkDataModel.getPass())) {
-                                flag = true;
-                            } else if (mobileList.get(j).getPass().equals(pkDataModel.getPass())) {
-                                flag = false;
-                                break;
+                            for (int j = 0; j < mobileList.size(); j++) {
+
+                                if (mobileList.get(j).getPass().equals(pkDataModel.getPass())) {
+                                    flag = false;
+                                    break;
+                                } else {
+                                    flag = true;
+                                }
                             }
-                        }
-                        if (flag) {
-                           db.addDataPass(pkDataModel);
+
+                            if (flag) {
+                                db.addDataPass(pkDataModel);
+                            }
+
                         }
                     }
 
-                    /** Test post */
-                    request.postData(URL, objTest);
+//                    request.postData(URL, postArray);
                 }
             } catch (Exception ioe) {
                 Log.e(TAG, "PK-hazelhunt to fetch URL: ", ioe);

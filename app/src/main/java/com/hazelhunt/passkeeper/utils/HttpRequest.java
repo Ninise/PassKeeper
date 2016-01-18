@@ -9,7 +9,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONObject;
+import org.json.JSONArray;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -38,8 +38,6 @@ public class HttpRequest {
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             InputStream in = connection.getInputStream();
 
-
-
             int bytesRead = 0;
             byte[] buffer = new byte[1024];
             while ((bytesRead = in.read(buffer)) > 0) {
@@ -53,24 +51,25 @@ public class HttpRequest {
         }
     }
 
-    public void postData(String url,JSONObject json) {
+    public void postData(String url, JSONArray json) {
         HttpClient httpclient = new DefaultHttpClient();
         try {
             HttpPost post = (HttpPost) createPostForJSONObject(json, url);
             HttpResponse response = httpclient.execute(post);
-            Log.d(TAG, isOKResponseCode() ? "200" : "403");
+            Log.d(TAG, response.getStatusLine().toString() + json.toString() + url);
         } catch (Exception e) {
            e.printStackTrace();
         }
     }
 
-    public static HttpUriRequest createPostForJSONObject(JSONObject params, String url) {
+    public static HttpUriRequest createPostForJSONObject(JSONArray params, String url) {
         HttpPost post = new HttpPost(url);
         post.setEntity(createStringEntity(params));
+        post.addHeader("Content-Type", "application/json");
         return post;
     }
 
-    private static HttpEntity createStringEntity(JSONObject params) {
+    private static HttpEntity createStringEntity(JSONArray params) {
         StringEntity se = null;
         try {
             se = new StringEntity(params.toString(), "UTF-8");
