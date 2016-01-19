@@ -36,6 +36,7 @@ import org.json.JSONArray;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PassListActivity extends AppCompatActivity {
@@ -248,7 +249,6 @@ public class PassListActivity extends AppCompatActivity {
         public String URL = "http://pk-hazelhunt.rhcloud.com/sync?user=" +
                 EMAIL + "&pass=" + PASSWORD;
 
-//        JSONArray postArray = new JSONArray();
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -256,8 +256,11 @@ public class PassListActivity extends AppCompatActivity {
             HttpRequest request = new HttpRequest();
 
             List<PKDataModel> mobileList = db.getAllDataPasses();
+            List<PKDataModel> cloudList = new ArrayList<>();
+            JSONArray postArray = new JSONArray();
 
-            boolean flag = false;
+            boolean flagGET = false;
+            boolean flagPOST = false;
 
             try {
 
@@ -266,37 +269,56 @@ public class PassListActivity extends AppCompatActivity {
                 if (request.isOKResponseCode()) {
 
                     JSONArray array = new JSONArray(resultJson);
-                    Log.d(TAG, array.get(0).toString());
 
                     for (int i = 0; i < array.length(); i++) {
+                        cloudList.add(JSONParser.parseToPKDataModel(array, i));
+                    }
 
-                        PKDataModel pkDataModel = JSONParser.parseToPKDataModel(array, i);
+                            /** GET */
+                            for (int i = 0; i < cloudList.size(); i++) {
 
-                        if (mobileList.isEmpty()) {
+                                for (int j = 0; j < mobileList.size(); j++) {
 
-                            db.addDataPass(pkDataModel);
+                                    if (mobileList.get(j).getPass().equals(cloudList.get(i).getPass())) {
+                                        flagGET = false;
+                                        break;
+                                    } else {
+                                        flagGET = true;
+                                    }
 
-                        } else {
+                                }
 
-                            for (int j = 0; j < mobileList.size(); j++) {
-
-                                if (mobileList.get(j).getPass().equals(pkDataModel.getPass())) {
-                                    flag = false;
-                                    break;
-                                } else {
-                                    flag = true;
+                                if (flagGET) {
+                                    db.addDataPass(cloudList.get(i));
                                 }
                             }
 
-                            if (flag) {
-                                db.addDataPass(pkDataModel);
-                            }
+                            /** POST */
+                            for (int j = 0; j < mobileList.size(); j++) {
 
+                                for (int k = 0; k < cloudList.size(); k++) {
+
+                                    if (cloudList.get(k).getPass().equals(mobileList.get(j).getPass())) {
+                                        flagPOST = false;
+                                        break;
+                                    } else {
+                                        flagPOST = true;
+                                    }
+                                }
+
+                                if (flagPOST) {
+                                    postArray.put(JSONParser.parseToJSON(mobileList.get(j)));
+                                    cloudList.add(mobileList.get(j));
+                                }
+
+                            }
                         }
+
+                    /** SEND POST */
+                    if (postArray.length() != 0) {
+                        request.postData(URL, postArray);
                     }
 
-//                    request.postData(URL, postArray);
-                }
             } catch (Exception ioe) {
                 Log.e(TAG, "PK-hazelhunt to fetch URL: ", ioe);
             }
