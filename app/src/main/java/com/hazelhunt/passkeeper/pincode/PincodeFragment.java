@@ -173,7 +173,12 @@ public class PincodeFragment extends Fragment {
                    public void onClick(DialogInterface dialog, int which) {
                        PINCODE = String.valueOf(inputPin.getText());
                        SECRET = String.valueOf(inputSecret.getText());
-                       mUserDataWorker.createUser(mUserData, PINCODE, SECRET);
+                       if (!PINCODE.isEmpty() && !SECRET.isEmpty()) {
+                           mUserDataWorker.createUser(mUserData, PINCODE, SECRET);
+                       } else {
+                           Toast.makeText(getActivity(), R.string.pin_and_secret_is_empty, Toast.LENGTH_LONG).show();
+                           showNewUserAlertDialog();
+                       }
                    }
                });
 

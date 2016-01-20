@@ -55,5 +55,6 @@
     <string name="synchro_with_cloud">Synchronize with\npk-hazelhunt.rhcloud.com</string>
     <string name="user_not_found">User not found!</string>
     <string name="enable_internet">Connection missing please enable</string>
+    <string name="pin_and_secret_is_empty">Please fill field PINCODE and SECRET</string>
 
 </resources>
