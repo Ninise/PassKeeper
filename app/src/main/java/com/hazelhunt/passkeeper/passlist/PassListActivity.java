@@ -274,6 +274,11 @@ public class PassListActivity extends AppCompatActivity {
                         cloudList.add(JSONParser.parseToPKDataModel(array, i));
                     }
 
+                    if (mobileList.isEmpty() && !cloudList.isEmpty()) {
+                        db.addDataPass(cloudList.get(0));
+                        mobileList.add(cloudList.get(0));
+                    }
+
                             /** GET */
                             for (int i = 0; i < cloudList.size(); i++) {
 
