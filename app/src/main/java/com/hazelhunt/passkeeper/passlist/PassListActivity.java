@@ -30,6 +30,7 @@ import com.hazelhunt.passkeeper.database.PKDataModel;
 import com.hazelhunt.passkeeper.settings.SettingsActivity;
 import com.hazelhunt.passkeeper.utils.HttpRequest;
 import com.hazelhunt.passkeeper.utils.JSONParser;
+import com.hazelhunt.passkeeper.utils.Utils;
 
 import org.json.JSONArray;
 
@@ -171,7 +172,7 @@ public class PassListActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         try {
                             EMAIL = emailEdit.getText().toString();
-                            PASSWORD = stringToMD5(passEdit.getText().toString());
+                            PASSWORD = Utils.stringToMD5(passEdit.getText().toString());
 
                             new PKItemsTask().execute();
 
@@ -197,13 +198,6 @@ public class PassListActivity extends AppCompatActivity {
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
 
         return netInfo != null && netInfo.isConnectedOrConnecting();
-    }
-
-    private String stringToMD5(String str) throws NoSuchAlgorithmException {
-        MessageDigest m = MessageDigest.getInstance("MD5");
-        m.update(str.getBytes(), 0, str.length());
-
-        return new BigInteger(1, m.digest()).toString(16);
     }
 
     private boolean menuSelect(MenuItem menuItem) {

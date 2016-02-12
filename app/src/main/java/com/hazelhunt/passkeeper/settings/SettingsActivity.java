@@ -16,6 +16,9 @@ import android.widget.Toast;
 
 import com.hazelhunt.passkeeper.R;
 import com.hazelhunt.passkeeper.utils.UserDataWorker;
+import com.hazelhunt.passkeeper.utils.Utils;
+
+import java.security.NoSuchAlgorithmException;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -74,13 +77,17 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         SECRET = String.valueOf(inputSecret.getText());
-                        if (checkSecret(SECRET)) {
-                            viewSettingsFragment();
-                        } else {
-                            Toast.makeText(getApplicationContext(),
-                                    R.string.alertFailSecret,
-                                    Toast.LENGTH_SHORT).show();
-                            onBackPressed();
+                        try {
+                            if (checkSecret(SECRET)) {
+                                viewSettingsFragment();
+                            } else {
+                                Toast.makeText(getApplicationContext(),
+                                        R.string.alertFailSecret,
+                                        Toast.LENGTH_SHORT).show();
+                                onBackPressed();
+                            }
+                        } catch (NoSuchAlgorithmException e) {
+                            e.printStackTrace();
                         }
                     }
                 })
@@ -104,7 +111,7 @@ public class SettingsActivity extends AppCompatActivity {
         alert.show();
     }
 
-    private boolean checkSecret(String SECRET) {
+    private boolean checkSecret(String SECRET) throws NoSuchAlgorithmException {
          return mUserDataWorker.isTrueSecret(mUserData, SECRET);
     }
 }

@@ -24,6 +24,9 @@ import android.widget.Toast;
 import com.hazelhunt.passkeeper.R;
 import com.hazelhunt.passkeeper.passlist.PassListActivity;
 import com.hazelhunt.passkeeper.utils.UserDataWorker;
+import com.hazelhunt.passkeeper.utils.Utils;
+
+import java.security.NoSuchAlgorithmException;
 
 public class PincodeFragment extends Fragment {
 
@@ -122,15 +125,19 @@ public class PincodeFragment extends Fragment {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mUserDataWorker.login(mUserData, INPUT_PINCODE)) {
-                    viewPassList();
-                } else {
-                    Toast.makeText(getActivity().getApplicationContext(),
-                            R.string.login_failed,
-                            Toast.LENGTH_SHORT)
-                            .show();
-                    mPinCodeTextView.setText("");
-                    }
+                try {
+                    if (mUserDataWorker.login(mUserData, Utils.stringToMD5(INPUT_PINCODE))) {
+                        viewPassList();
+                    } else {
+                        Toast.makeText(getActivity().getApplicationContext(),
+                                R.string.login_failed,
+                                Toast.LENGTH_SHORT)
+                                .show();
+                        mPinCodeTextView.setText("");
+                        }
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
