@@ -1,10 +1,12 @@
 package com.hazelhunt.passkeeper.mvp.presenter.main;
 
 
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.hazelhunt.passkeeper.R;
 import com.hazelhunt.passkeeper.mvp.view.about.AboutActivity;
+import com.hazelhunt.passkeeper.mvp.view.add.AddActivity;
 import com.hazelhunt.passkeeper.mvp.view.main.IMainView;
 import com.hazelhunt.passkeeper.mvp.view.settings.SettingsActivity;
 
@@ -20,7 +22,7 @@ public class MainPresenter implements IMainPresenter {
     public boolean menuSelected(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.menuAddNew:
-//                mView.switchToActivity();
+                mView.switchToActivity(AddActivity.class);
                 return true;
             case R.id.menuSettings:
                 mView.switchToActivity(SettingsActivity.class);

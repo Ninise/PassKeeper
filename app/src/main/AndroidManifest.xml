@@ -25,6 +25,8 @@
 
         <activity android:name=".mvp.view.settings.SettingsActivity"/>
 
+        <activity android:name=".mvp.view.add.AddActivity"/>
+
     </application>
 
 </manifest>

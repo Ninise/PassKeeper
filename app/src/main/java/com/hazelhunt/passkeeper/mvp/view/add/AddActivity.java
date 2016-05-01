@@ -18,6 +18,7 @@ import butterknife.Bind;
 import butterknife.BindDrawable;
 import butterknife.BindString;
 import butterknife.ButterKnife;
+import sqlite4a.SQLiteDb;
 
 public class AddActivity extends AppCompatActivity implements IAddView {
 
@@ -34,6 +35,10 @@ public class AddActivity extends AppCompatActivity implements IAddView {
 
     private AddPresenter mPresenter;
 
+    static {
+        SQLiteDb.loadLibrary();
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +47,7 @@ public class AddActivity extends AppCompatActivity implements IAddView {
         ButterKnife.bind(this);
 
         mPresenter = new AddPresenter(this);
+        mPresenter.onAttach(this);
 
         setSupportActionBar(mAddToolbar);
         mAddToolbar.setTitle(mToolTitleString);
@@ -67,5 +73,6 @@ public class AddActivity extends AppCompatActivity implements IAddView {
     @Override
     public void saved() {
         Toast.makeText(this, mSaveString, Toast.LENGTH_SHORT).show();
+        onBackPressed();
     }
 }
