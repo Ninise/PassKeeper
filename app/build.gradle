@@ -35,6 +35,7 @@ dependencies {
     // injection
     compile 'com.jakewharton:butterknife:7.0.1'
 
+
     // ReactiveX
     compile 'io.reactivex:rxjava:1.1.1'
     compile 'io.reactivex:rxandroid:1.1.0'
@@ -45,6 +46,8 @@ dependencies {
     compile 'com.jakewharton.rxbinding:rxbinding-support-v4:0.4.0'
     compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:0.4.0'
     compile 'com.jakewharton.rxbinding:rxbinding-recyclerview-v7:0.4.0'
+    compile 'rxsqlite:library:3.2.0'
+    provided 'rxsqlite:compiler:3.2.0'
 
     // test libs
     testCompile 'junit:junit:4.12'
