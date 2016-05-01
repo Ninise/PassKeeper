@@ -1,10 +1,10 @@
-package com.hazelhunt.passkeeper.mvp.utils.preferences;
+package com.hazelhunt.passkeeper.utils.preferences;
 
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.hazelhunt.passkeeper.mvp.utils.Constants;
+import com.hazelhunt.passkeeper.utils.Constants;
 
 public class UserAccountPreferences {
 

@@ -20,5 +20,11 @@
     <string name="exit">Exit</string>
     <string name="login_wrong_password">Incorrect password</string>
     <string name="login_right_passwrod">Correct password</string>
+    <string name="registration">Registration</string>
+    <string name="registration_content">Please type up your pincode</string>
+    <string name="string_ok">OK</string>
+    <string name="string_cancel">Cancel</string>
+    <string name="openDrawer">open</string>
+    <string name="closeDrawer">close</string>
 
 </resources>

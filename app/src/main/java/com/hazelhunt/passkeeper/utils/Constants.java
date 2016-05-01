@@ -1,4 +1,4 @@
-package com.hazelhunt.passkeeper.mvp.utils;
+package com.hazelhunt.passkeeper.utils;
 
 public class Constants {
 

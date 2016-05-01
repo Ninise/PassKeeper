@@ -4,5 +4,6 @@ public interface ILoginView {
 
     void onEntrySuccess();
     void onEntryFailed();
+    void showRegisterDialog();
 
 }
