@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.hazelhunt.passkeeper.R;
 import com.hazelhunt.passkeeper.mvp.presenter.main.ListPresenter;
-import com.jakewharton.rxbinding.support.v7.widget.RxRecyclerView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

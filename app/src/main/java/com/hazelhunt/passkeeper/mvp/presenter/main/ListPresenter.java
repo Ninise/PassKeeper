@@ -23,7 +23,7 @@ public class ListPresenter implements IListPresenter {
     @Override
     public void getRecyclerAdapter(Context context) {
         DatabaseWorker.loadAll().toList().subscribe(models -> {
-            mView.setRecyclerAdapter(new RecyclerAdapter(models));
+            mView.setRecyclerAdapter(new RecyclerAdapter(context, models));
         });
     }
 }

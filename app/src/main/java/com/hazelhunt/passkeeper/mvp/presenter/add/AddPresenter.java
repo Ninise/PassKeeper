@@ -26,4 +26,13 @@ public class AddPresenter implements IAddPresenter {
             mView.saved();
         });
     }
+
+    @Override
+    public void update(long id, String url, String login, String pass, String email, String extra) {
+        PassModel model = new PassModel(id, url, login, pass, email, extra);
+
+        DatabaseWorker.save(model).subscribe(model1 -> {
+            mView.saved();
+        });
+    }
 }

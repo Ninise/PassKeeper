@@ -11,13 +11,12 @@ public class DatabaseWorker {
 
     private static final String TABLE_ACCS = "acc_table";
 
-    private static final String DATABASE_NAME = "accs";
-    private static final String KEY_ID = "_id";
-    private static final String KEY_URL = "mUrl";
-    private static final String KEY_LOGIN = "mLogin";
-    private static final String KEY_PASS = "mPass";
-    private static final String KEY_EMAIL = "mEmail";
-    private static final String KEY_EXTRA = "mExtra";
+    public static final String KEY_ID = "_id";
+    public static final String KEY_URL = "mUrl";
+    public static final String KEY_LOGIN = "mLogin";
+    public static final String KEY_PASS = "mPass";
+    public static final String KEY_EMAIL = "mEmail";
+    public static final String KEY_EXTRA = "mExtra";
 
     private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_ACCS +
             "(" + KEY_ID + " INTEGER PRIMARY KEY," +

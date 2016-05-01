@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.hazelhunt.passkeeper.R;
+import com.hazelhunt.passkeeper.mvp.model.DatabaseWorker;
 import com.hazelhunt.passkeeper.mvp.presenter.add.AddPresenter;
 import com.jakewharton.rxbinding.support.v7.widget.RxToolbar;
 import com.jakewharton.rxbinding.view.RxView;
@@ -34,6 +35,7 @@ public class AddActivity extends AppCompatActivity implements IAddView {
     @BindDrawable(R.drawable.ic_action_navigation_arrow_back) Drawable mBackDrawable;
 
     private AddPresenter mPresenter;
+    private long id;
 
     static {
         SQLiteDb.loadLibrary();
@@ -49,19 +51,43 @@ public class AddActivity extends AppCompatActivity implements IAddView {
         mPresenter = new AddPresenter(this);
         mPresenter.onAttach(this);
 
+        if (getBundleNotNull()) {
+            id = this.getIntent().getLongExtra(DatabaseWorker.KEY_ID, 0);
+            mUrlEditText.setText(this.getIntent().getStringExtra(DatabaseWorker.KEY_URL));
+            mEmailEditText.setText(this.getIntent().getStringExtra(DatabaseWorker.KEY_EMAIL));
+            mLoginEditText.setText(this.getIntent().getStringExtra(DatabaseWorker.KEY_LOGIN));
+            mPassEditText.setText(this.getIntent().getStringExtra(DatabaseWorker.KEY_PASS));
+            mExtraEditText.setText(this.getIntent().getStringExtra(DatabaseWorker.KEY_EXTRA));
+        }
+
         setSupportActionBar(mAddToolbar);
         mAddToolbar.setTitle(mToolTitleString);
         mAddToolbar.setNavigationIcon(mBackDrawable);
         RxToolbar.navigationClicks(mAddToolbar).subscribe(aVoid -> onBackPressed());
 
-        RxView.clicks(mSaveButton).subscribe(aVoid ->
-                mPresenter.add(
-                        mUrlEditText.getText().toString(),
-                        mLoginEditText.getText().toString(),
-                        mPassEditText.getText().toString(),
-                        mEmailEditText.getText().toString(),
-                        mExtraEditText.getText().toString())
+        RxView.clicks(mSaveButton).subscribe(aVoid -> {
+                    if (getBundleNotNull()) {
+                        mPresenter.update(
+                                id,
+                                mUrlEditText.getText().toString(),
+                                mLoginEditText.getText().toString(),
+                                mPassEditText.getText().toString(),
+                                mEmailEditText.getText().toString(),
+                                mExtraEditText.getText().toString());
+                    } else {
+                        mPresenter.add(
+                                mUrlEditText.getText().toString(),
+                                mLoginEditText.getText().toString(),
+                                mPassEditText.getText().toString(),
+                                mEmailEditText.getText().toString(),
+                                mExtraEditText.getText().toString());
+                    }
+                }
         );
+    }
+
+    private boolean getBundleNotNull() {
+        return (this.getIntent().getExtras() != null);
     }
 
     @Override

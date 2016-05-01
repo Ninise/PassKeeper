@@ -6,5 +6,6 @@ public interface IAddPresenter {
 
     void onAttach(Context context);
     void add(String url, String login, String pass, String email, String extra);
+    void update(long id, String url, String login, String pass, String email, String extra);
 
 }
