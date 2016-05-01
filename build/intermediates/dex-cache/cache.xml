@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/home/ninise/Dev/GITHUB/PassKeeper/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="fb8a098b438683adbb3114633ce8992f172bf342">
+        <dex dex="/home/ninise/Dev/GITHUB/PassKeeper/app/build/intermediates/pre-dexed/debug/instant-run-bootstrap_d2416590313776d0e4636aa343a7f92b84067fcd.jar" />
+    </item>
+
+</items>

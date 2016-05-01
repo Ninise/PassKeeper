@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <include android:id="@+id/aboutToolbar"
+             layout="@layout/tool_bar"
+        />
+
+    <Button
+        android:id="@+id/aboutOkButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/string_ok"
+        style="@style/RobotoButtonStyle"
+        />
+
+    <ImageView
+        android:id="@+id/aboutAppLogoImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/aboutToolbar"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:id="@+id/aboutCreatorTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/aboutAppLogoImageView"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="@string/about_creator"
+        android:textColor="@color/colorPrimary"
+        style="@style/RobotoTextViewStyle"
+        />
+
+</RelativeLayout>

@@ -26,5 +26,6 @@
     <string name="string_cancel">Cancel</string>
     <string name="openDrawer">open</string>
     <string name="closeDrawer">close</string>
+    <string name="about_creator">Created by Nikitin N. @ 2016</string>
 
 </resources>

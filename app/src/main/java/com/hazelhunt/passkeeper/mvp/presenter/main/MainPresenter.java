@@ -4,6 +4,7 @@ package com.hazelhunt.passkeeper.mvp.presenter.main;
 import android.view.MenuItem;
 
 import com.hazelhunt.passkeeper.R;
+import com.hazelhunt.passkeeper.mvp.view.about.AboutActivity;
 import com.hazelhunt.passkeeper.mvp.view.main.IMainView;
 
 public class MainPresenter implements IMainPresenter {
