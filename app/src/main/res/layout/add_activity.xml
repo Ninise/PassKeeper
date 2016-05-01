@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <include android:id="@+id/addToolbar"
+             layout="@layout/tool_bar"
+             />
+
+    <TextView
+        android:id="@+id/addUrlTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addToolbar"
+        android:text="@string/add_url"
+        style="@style/RobotoTextViewStyle"
+        />
+
+    <EditText
+        android:id="@+id/addUrlEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addUrlTextView"
+        style="@style/RobotoTextViewStyle"
+        />
+
+    <TextView
+        android:id="@+id/addLoginTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addUrlEditText"
+        android:text="@string/add_login"
+        style="@style/RobotoTextViewStyle"
+        />
+
+    <EditText
+        android:id="@+id/addLoginEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addLoginTextView"
+        style="@style/RobotoTextViewStyle"
+        />
+
+    <TextView
+        android:id="@+id/addPassTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addLoginEditText"
+        android:text="@string/add_pass"
+        style="@style/RobotoTextViewStyle"
+        />
+
+    <EditText
+        android:id="@+id/addPassEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addPassTextView"
+        style="@style/RobotoTextViewStyle"
+        />
+
+    <TextView
+        android:id="@+id/addEmailTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addPassEditText"
+        android:text="@string/add_email"
+        style="@style/RobotoTextViewStyle"
+        />
+
+    <EditText
+        android:id="@+id/addEmailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addEmailTextView"
+        style="@style/RobotoTextViewStyle"
+        />
+
+    <TextView
+        android:id="@+id/addExtraTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addEmailEditText"
+        android:text="@string/add_extra"
+        style="@style/RobotoTextViewStyle"
+        />
+
+    <EditText
+        android:id="@+id/addExtraEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addExtraTextView"
+        style="@style/RobotoTextViewStyle"
+        />
+
+    <Button
+        android:id="@+id/addSaveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/settings_save"
+        style="@style/RobotoButtonStyle"
+        />
+</RelativeLayout>
