@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -51,7 +52,13 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
         actionBarDrawerToggle.syncState();
 
+        showList();
+    }
 
+    private void showList() {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.MainContainer, new ListFragment());
+        fragmentTransaction.commit();
     }
 
     @Override
