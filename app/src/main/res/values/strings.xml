@@ -27,5 +27,10 @@
     <string name="openDrawer">open</string>
     <string name="closeDrawer">close</string>
     <string name="about_creator">Created by Nikitin N. @ 2016</string>
+    <string name="settings_delete_all">Delete all data from app</string>
+    <string name="settings_change_pin">Change pin</string>
+    <string name="settings_change_pin_hint">New Pin</string>
+    <string name="settings_save">Save</string>
+    <string name="settings_changes_saved">Saved</string>
 
 </resources>

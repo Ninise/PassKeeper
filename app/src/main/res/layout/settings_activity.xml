@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <include android:id="@+id/settingsToolbar"
+             layout="@layout/tool_bar"
+             />
+
+    <TextView
+        android:id="@+id/settingsChangePincodeTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/settingsToolbar"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="@string/settings_change_pin"
+        android:textSize="35sp"
+        style="@style/RobotoTextViewStyle"
+        />
+
+    <EditText
+        android:id="@+id/settignsChangePincodeEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/settingsChangePincodeTextView"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:inputType="numberPassword"
+        android:minHeight="60dp"
+        android:hint="@string/settings_change_pin_hint"
+        style="@style/RobotoTextViewStyle"
+        />
+
+
+    <Button
+        android:id="@+id/settignsSaveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/settings_save"
+        style="@style/RobotoButtonStyle"
+        />
+
+    <TextView
+        android:id="@+id/settingsDeleteAllDataTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/settignsSaveButton"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="25dp"
+        android:text="@string/settings_delete_all"
+        style="@style/RobotoTextViewStyle"
+        />
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/settingsDeleteAllDataCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/settignsSaveButton"
+        android:layout_marginBottom="25dp"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentRight="true"
+        />
+
+
+</RelativeLayout>

@@ -23,6 +23,8 @@
 
         <activity android:name=".mvp.view.about.AboutActivity"/>
 
+        <activity android:name=".mvp.view.settings.SettingsActivity"/>
+
     </application>
 
 </manifest>
