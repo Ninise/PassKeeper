@@ -62,5 +62,6 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
     @Override
     public void changesSaved() {
         Toast.makeText(this, mSavedString, Toast.LENGTH_SHORT).show();
+        onBackPressed();
     }
 }

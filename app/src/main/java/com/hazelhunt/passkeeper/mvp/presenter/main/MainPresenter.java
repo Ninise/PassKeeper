@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import com.hazelhunt.passkeeper.R;
 import com.hazelhunt.passkeeper.mvp.view.about.AboutActivity;
 import com.hazelhunt.passkeeper.mvp.view.main.IMainView;
+import com.hazelhunt.passkeeper.mvp.view.settings.SettingsActivity;
 
 public class MainPresenter implements IMainPresenter {
 
@@ -22,7 +23,7 @@ public class MainPresenter implements IMainPresenter {
 //                mView.switchToActivity();
                 return true;
             case R.id.menuSettings:
-//                mView.switchToActivity();
+                mView.switchToActivity(SettingsActivity.class);
                 return true;
             case R.id.menuAbout:
                 mView.switchToActivity(AboutActivity.class);

@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
         Context dialogContext = builder.getContext();
         EditText pinEditText = new EditText(dialogContext);
-        pinEditText.setInputType(InputType.TYPE_NUMBER_VARIATION_NORMAL);
+        pinEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         builder.setTitle(mRegistrationString);
         builder.setMessage(mContentDialogString);
