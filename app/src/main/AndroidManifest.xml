@@ -6,26 +6,17 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/logo"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.hazelhunt.passkeeper.pincode.PincodeActivity"
+        <activity android:name="com.hazelhunt.passkeeper.mvp.view.login.LoginActivity"
                   android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <activity android:name="com.hazelhunt.passkeeper.passlist.PassListActivity"
-                  android:screenOrientation="portrait"/>
-
-        <activity android:name="com.hazelhunt.passkeeper.settings.SettingsActivity"
-                  android:screenOrientation="portrait"/>
-
-        <activity android:name="com.hazelhunt.passkeeper.about.AboutActivity"
-                  android:screenOrientation="portrait"/>
 
     </application>
 
