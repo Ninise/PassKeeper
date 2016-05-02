@@ -1,7 +1,9 @@
 package com.hazelhunt.passkeeper.mvp.presenter.add;
 
 import android.content.Context;
+import android.view.MenuItem;
 
+import com.hazelhunt.passkeeper.R;
 import com.hazelhunt.passkeeper.mvp.model.DatabaseWorker;
 import com.hazelhunt.passkeeper.mvp.model.PassModel;
 import com.hazelhunt.passkeeper.mvp.view.add.IAddView;
@@ -20,19 +22,24 @@ public class AddPresenter implements IAddPresenter {
     }
 
     @Override
-    public void add(String url, String login, String pass, String email, String extra) {
-        PassModel model = new PassModel(url, login, pass, email, extra);
+    public void add(PassModel model) {
         DatabaseWorker.save(model).subscribe(model1 -> {
             mView.saved();
         });
     }
 
     @Override
-    public void update(long id, String url, String login, String pass, String email, String extra) {
-        PassModel model = new PassModel(id, url, login, pass, email, extra);
+    public void update(PassModel model) {
+        DatabaseWorker.save(model).subscribe(model1 -> mView.saved());
+    }
 
-        DatabaseWorker.save(model).subscribe(model1 -> {
-            mView.saved();
-        });
+    @Override
+    public boolean delete(MenuItem item, PassModel model) {
+        switch (item.getItemId()) {
+            case R.id.menuDelete:
+                DatabaseWorker.remove(model).subscribe(model1 -> mView.saved());
+                return true;
+        }
+        return false;
     }
 }

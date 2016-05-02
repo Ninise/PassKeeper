@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.hazelhunt.passkeeper.R;
 import com.hazelhunt.passkeeper.mvp.model.DatabaseWorker;
+import com.hazelhunt.passkeeper.mvp.model.PassModel;
 import com.hazelhunt.passkeeper.mvp.presenter.add.AddPresenter;
 import com.jakewharton.rxbinding.support.v7.widget.RxToolbar;
 import com.jakewharton.rxbinding.view.RxView;
@@ -36,6 +38,7 @@ public class AddActivity extends AppCompatActivity implements IAddView {
 
     private AddPresenter mPresenter;
     private long id;
+    private PassModel mModel;
 
     static {
         SQLiteDb.loadLibrary();
@@ -50,6 +53,7 @@ public class AddActivity extends AppCompatActivity implements IAddView {
 
         mPresenter = new AddPresenter(this);
         mPresenter.onAttach(this);
+        mModel = new PassModel();
 
         if (getBundleNotNull()) {
             id = this.getIntent().getLongExtra(DatabaseWorker.KEY_ID, 0);
@@ -63,24 +67,21 @@ public class AddActivity extends AppCompatActivity implements IAddView {
         setSupportActionBar(mAddToolbar);
         mAddToolbar.setTitle(mToolTitleString);
         mAddToolbar.setNavigationIcon(mBackDrawable);
+
         RxToolbar.navigationClicks(mAddToolbar).subscribe(aVoid -> onBackPressed());
+
+        RxToolbar.itemClicks(mAddToolbar).subscribe(item -> {
+            mModel.setId(id);
+            mPresenter.delete(item, createObj());
+        });
 
         RxView.clicks(mSaveButton).subscribe(aVoid -> {
                     if (getBundleNotNull()) {
-                        mPresenter.update(
-                                id,
-                                mUrlEditText.getText().toString(),
-                                mLoginEditText.getText().toString(),
-                                mPassEditText.getText().toString(),
-                                mEmailEditText.getText().toString(),
-                                mExtraEditText.getText().toString());
+                        mModel.setId(id);
+                        createObj();
+                        mPresenter.update(mModel);
                     } else {
-                        mPresenter.add(
-                                mUrlEditText.getText().toString(),
-                                mLoginEditText.getText().toString(),
-                                mPassEditText.getText().toString(),
-                                mEmailEditText.getText().toString(),
-                                mExtraEditText.getText().toString());
+                        mPresenter.add(createObj());
                     }
                 }
         );
@@ -90,9 +91,26 @@ public class AddActivity extends AppCompatActivity implements IAddView {
         return (this.getIntent().getExtras() != null);
     }
 
+    private PassModel createObj() {
+        mModel.setUrl(mUrlEditText.getText().toString());
+        mModel.setLogin(mLoginEditText.getText().toString());
+        mModel.setPass(mPassEditText.getText().toString());
+        mModel.setEmail(mEmailEditText.getText().toString());
+        mModel.setExtra(mExtraEditText.getText().toString());
+
+        return mModel;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.add_menu, menu);
+        return true;
+    }
+
     @Override
     protected void onDestroy() {
         ButterKnife.unbind(this);
+        mModel = null;
         super.onDestroy();
     }
 
