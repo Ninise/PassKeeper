@@ -16,7 +16,7 @@
             android:layout_marginLeft="5dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textSize="50sp"
+            android:textSize="30sp"
             style="@style/RobotoTextViewStyle.Title"
             />
 

@@ -3,22 +3,32 @@
 
         <item
             android:id="@+id/menuAddNew"
-            android:title="@string/add_new" />
+            android:title="@string/add_new"
+            android:icon="@drawable/ic_action_content_add_circle_outline"
+            />
 
         <item
             android:id="@+id/menuSettings"
-            android:title="@string/settings" />
+            android:title="@string/settings"
+            android:icon="@drawable/ic_action_action_settings"
+            />
 
         <item
             android:id="@+id/menuSynchronize"
-            android:title="@string/synchro"/>
+            android:title="@string/synchro"
+            android:icon="@drawable/ic_action_notification_sync"
+            />
 
         <item
             android:id="@+id/menuAbout"
-            android:title="@string/about" />
+            android:title="@string/about"
+            android:icon="@drawable/ic_action_action_info_outline"
+            />
 
         <item
             android:id="@+id/menuExit"
-            android:title="@string/exit" />
+            android:title="@string/exit"
+            android:icon="@drawable/ic_action_action_exit_to_app"
+            />
 
 </menu>

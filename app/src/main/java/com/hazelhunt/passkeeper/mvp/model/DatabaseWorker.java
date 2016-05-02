@@ -39,10 +39,6 @@ public class DatabaseWorker {
             return RxSQLite.save(model);
     }
 
-    public static Observable<PassModel> load(long id) {
-        return RxSQLite.query(PassModel.class, new RxSQLiteWhere().where(KEY_ID + " = " + id));
-    }
-
     public static Observable<PassModel> loadAll() {
         return RxSQLite.query(PassModel.class, new RxSQLiteWhere());
     }
