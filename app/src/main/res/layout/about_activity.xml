@@ -23,6 +23,7 @@
         android:layout_below="@id/aboutToolbar"
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
+        android:contentDescription="@string/about"
         android:src="@drawable/ic_launcher"
         />
 
