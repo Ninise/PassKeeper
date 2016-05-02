@@ -1,2 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="E:\Dev\PassKeeper\app\build\intermediates\exploded-aar\com.android.support\design\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\com.android.support-design-23.3.0_6eb04860f1b86cff17a40bd5aa2a31d4d6376039.jar" />
+    </item>
+    <item
+        jar="E:\Dev\PassKeeper\app\build\intermediates\exploded-aar\com.trello\rxlifecycle-components\0.5.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="dbc883aa30d0e1472a7e14908570d6de09592c75">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\com.trello-rxlifecycle-components-0.5.0_92817aada5ddef3597e1c8b85d79d27746ad8d73.jar" />
+    </item>
+    <item
+        jar="E:\Dev\PassKeeper\app\build\intermediates\exploded-aar\com.jakewharton.rxbinding\rxbinding-support-v4\0.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="417b075934c24fa45ba94be0f451fd6dec69feb8">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\com.jakewharton.rxbinding-rxbinding-support-v4-0.4.0_50df77718f26f83a37740c546e5d4cbf37cf5114.jar" />
+    </item>
+    <item
+        jar="E:\Dev\PassKeeper\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.3.0_f4b98983c82bb1e8a333365ef2176012e4bfb3eb.jar" />
+    </item>
+    <item
+        jar="E:\Dev\PassKeeper\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.3.0_1e48bcf9de61ff89651676068d59530a2640196a.jar" />
+    </item>
+    <item
+        jar="E:\Dev\PassKeeper\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a8315ca4f919e05d5d28c3b1a1b127203dbfff0e">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_e8954fc312f06f558edca87fa25b13b3a9ead31d.jar" />
+    </item>
+    <item
+        jar="E:\Dev\PassKeeper\app\build\intermediates\exploded-aar\io.reactivex\rxandroid\1.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="d4c4b83de2f6412072d2a29b1b7a5b03edaad5ff">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\io.reactivex-rxandroid-1.1.0_4ac6cc8f65a5721f4bd61c1c7f6e88d5ddb86600.jar" />
+    </item>
+    <item
+        jar="C:\Users\nikit\.gradle\caches\modules-2\files-2.1\io.reactivex\rxjava\1.1.1\b494968f6050d494de55dc3ce005e59c7eb40012\rxjava-1.1.1.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="b494968f6050d494de55dc3ce005e59c7eb40012">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\rxjava-1.1.1_1f76cf4fd1f6e2ff59a32b56d3dabda20ac3ad33.jar" />
+    </item>
+    <item
+        jar="E:\Dev\PassKeeper\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\libs\internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\internal_impl-23.3.0_b4869dd19aa3ec1a87f27b25bab3d33c5cc9cd6b.jar" />
+    </item>
+    <item
+        jar="E:\Dev\PassKeeper\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="9e0344d17d1f2795ebda6d54a464e41e7f376509">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\instant-run_d6ab140ddcfb272e2f4944080ab862108946890d.jar" />
+    </item>
+    <item
+        jar="E:\Dev\PassKeeper\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.3.0_17ac9cd76f99c0915891dcd98a35cc573cdb68c8.jar" />
+    </item>
+    <item
+        jar="E:\Dev\PassKeeper\app\build\intermediates\exploded-aar\sqlite4a\library\3.2.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="d8645748413310c33fb483962293bfbbfb80c1b0">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\sqlite4a-library-3.2.0_7fc9081cfe42da6c7fcd68663018b74e20e17b58.jar" />
+    </item>
+    <item
+        jar="C:\Users\nikit\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife\7.0.1\d5d13ea991eab0252e3710e5df3d6a9d4b21d461\butterknife-7.0.1.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\butterknife-7.0.1_a2ccc5fe8c3653b8e5ed78c5b25bcad6e7e728fd.jar" />
+    </item>
+    <item
+        jar="E:\Dev\PassKeeper\app\build\intermediates\exploded-aar\com.trello\rxlifecycle\0.5.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="bc1e2e7bee6f7bc63327d1b7c120ab1665dfda38">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\com.trello-rxlifecycle-0.5.0_fadeba11c86b4d3db6ceece56eb7303c7a2a974f.jar" />
+    </item>
+    <item
+        jar="E:\Dev\PassKeeper\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.3.0_c9ab44169db5d5a0dd9c8ce3f69d0b6c9b0b265a.jar" />
+    </item>
+    <item
+        jar="E:\Dev\PassKeeper\app\build\intermediates\exploded-aar\com.jakewharton.rxbinding\rxbinding\0.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="ffc09f4e5bdebe068e5101f587dadc42b60fbfe4">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\com.jakewharton.rxbinding-rxbinding-0.4.0_41fd94e4fc8b5c7a71b6adcd112f7fadde9bb7bb.jar" />
+    </item>
+    <item
+        jar="E:\Dev\PassKeeper\app\build\intermediates\exploded-aar\com.jakewharton.rxbinding\rxbinding-design\0.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="d875246afc9be5798bf65fd61fb42af06fee4553">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\com.jakewharton.rxbinding-rxbinding-design-0.4.0_71d922bf94a828578f370981fbe3d9bc63381e2c.jar" />
+    </item>
+    <item
+        jar="E:\Dev\PassKeeper\app\build\intermediates\exploded-aar\rxsqlite\library\3.2.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="aa0f0c4e3e04af5d9d69d50dd0555d6119f88124">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\rxsqlite-library-3.2.0_b98ab11edb7a98094e1325aafa267fe42806fe28.jar" />
+    </item>
+    <item
+        jar="E:\Dev\PassKeeper\app\build\intermediates\exploded-aar\com.jakewharton.rxbinding\rxbinding-appcompat-v7\0.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="cea3c0edbda1279bc261187fb3b6f874bfc841f4">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\com.jakewharton.rxbinding-rxbinding-appcompat-v7-0.4.0_81da85c65f7bd2c57b6d7fcef77f67d72bf9c130.jar" />
+    </item>
+    <item
+        jar="E:\Dev\PassKeeper\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="82ce13fd19cdfde0e392f03c27edeba8d4333648">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\com.android.support-cardview-v7-23.3.0_82a03463f6a3d0fb83227a73270bc7426a0a4a9b.jar" />
+    </item>
+    <item
+        jar="C:\Users\nikit\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\23.3.0\support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\support-annotations-23.3.0_f1864f5cbc26cd2046ec2eedd9fc33bda45d94be.jar" />
+    </item>
+    <item
+        jar="E:\Dev\PassKeeper\app\build\intermediates\exploded-aar\com.jakewharton.rxbinding\rxbinding-recyclerview-v7\0.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="74ccbcc431e5d95ee2cf2783128700f32222dca3">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\com.jakewharton.rxbinding-rxbinding-recyclerview-v7-0.4.0_7d3eed95bbbe0b930d9d7eecaefdf30fb23095c8.jar" />
+    </item>
+    <item
+        jar="E:\Dev\PassKeeper\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="E:\Dev\PassKeeper\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.3.0_bd2f2ec10a84756b1094c2c55ca377ac53944109.jar" />
+    </item>
+
+</items>
